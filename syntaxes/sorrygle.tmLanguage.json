@@ -1,0 +1,155 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Sorrygle",
+  "scopeName": "source.sorrygle",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#global-configuration" },
+    { "include": "#emoji-declaration" },
+    { "include": "#local-configuration" },
+    { "include": "#emoji-reference" },
+    { "include": "#channel" },
+    { "include": "#udr" },
+    { "include": "#group" },
+    { "include": "#repetition" },
+    { "include": "#range" },
+    { "include": "#diacritic" },
+    { "include": "#brackets" },
+    { "include": "#notes" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.head.sorrygle", "match": "^.*=/" },
+        { "name": "comment.line.tail.sorrygle", "match": "/=.*$" }
+      ]
+    },
+    "global-configuration": {
+      "match": "(\\(\\()([\\w./-]+)(=)([\\w./-]+)(\\)\\))",
+      "captures": {
+        "1": { "name": "punctuation.definition.tag.sorrygle" },
+        "2": { "name": "keyword.control.global.sorrygle" },
+        "3": { "name": "keyword.operator.assignment.sorrygle" },
+        "4": { "name": "constant.numeric.sorrygle" },
+        "5": { "name": "punctuation.definition.tag.sorrygle" }
+      }
+    },
+    "emoji-declaration": {
+      "begin": "(\\(\\()([^\\x{00}-\\x{FF}]+)(=)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.sorrygle" },
+        "2": { "name": "entity.name.constant.emoji.sorrygle" },
+        "3": { "name": "keyword.operator.assignment.sorrygle" }
+      },
+      "end": "\\)\\)",
+      "endCaptures": { "0": { "name": "punctuation.definition.tag.sorrygle" } },
+      "patterns": [{ "include": "#local-configuration" }]
+    },
+    "local-configuration": {
+      "match": "(\\()([\\w./-]+)(=)([\\w./-]+)(\\))",
+      "captures": {
+        "1": { "name": "punctuation.section.parens.sorrygle" },
+        "2": { "name": "variable.parameter.sorrygle" },
+        "3": { "name": "keyword.operator.assignment.sorrygle" },
+        "4": { "name": "constant.numeric.sorrygle" },
+        "5": { "name": "punctuation.section.parens.sorrygle" }
+      }
+    },
+    "emoji-reference": {
+      "match": "(\\()([^\\x{00}-\\x{FF}]+)(\\))",
+      "captures": {
+        "1": { "name": "punctuation.section.parens.sorrygle" },
+        "2": { "name": "constant.other.emoji.sorrygle" },
+        "3": { "name": "punctuation.section.parens.sorrygle" }
+      }
+    },
+    "channel": {
+      "match": "#~?\\d+",
+      "name": "entity.name.section.channel.sorrygle"
+    },
+    "udr": {
+      "match": "(\\{\\{)([\\w./-]+)(\\}\\})",
+      "captures": {
+        "1": { "name": "punctuation.definition.tag.sorrygle" },
+        "2": { "name": "entity.name.function.sorrygle" },
+        "3": { "name": "punctuation.definition.tag.sorrygle" }
+      }
+    },
+    "group": {
+      "patterns": [
+        {
+          "match": "(\\{=)(\\d+)(\\})",
+          "captures": {
+            "1": { "name": "punctuation.section.braces.sorrygle" },
+            "2": { "name": "variable.other.group.sorrygle" },
+            "3": { "name": "punctuation.section.braces.sorrygle" }
+          }
+        },
+        {
+          "match": "(\\{)(\\d+)",
+          "captures": {
+            "1": { "name": "punctuation.section.braces.sorrygle" },
+            "2": { "name": "entity.name.type.group.sorrygle" }
+          }
+        },
+        { "match": "[{}]", "name": "punctuation.section.braces.sorrygle" }
+      ]
+    },
+    "repetition": {
+      "patterns": [
+        { "match": "\\|:", "name": "keyword.control.repeat.sorrygle" },
+        { "match": ":\\|\\d*", "name": "keyword.control.repeat.sorrygle" },
+        { "match": "/[12]", "name": "keyword.control.volta.sorrygle" }
+      ]
+    },
+    "range": {
+      "match": "\\([v^357s:|]",
+      "name": "keyword.operator.range.sorrygle"
+    },
+    "diacritic": {
+      "patterns": [
+        {
+          "match": "<[.~!t+\\-p]",
+          "name": "keyword.operator.diacritic.sorrygle"
+        },
+        {
+          "match": "\\(-?[\\d.]+\\)",
+          "name": "constant.numeric.bend.sorrygle"
+        },
+        {
+          "match": "\\d+(?=\\s*>)",
+          "name": "constant.numeric.velocity.sorrygle"
+        },
+        { "match": ">", "name": "keyword.operator.diacritic.sorrygle" }
+      ]
+    },
+    "brackets": {
+      "patterns": [
+        {
+          "match": "\\[\\[|\\]\\]",
+          "name": "keyword.operator.parallel.sorrygle"
+        },
+        { "match": "\\[\\||\\[>", "name": "keyword.operator.chord.sorrygle" },
+        { "match": "\\|", "name": "keyword.operator.parallel.sorrygle" },
+        {
+          "match": "[\\[\\]()]",
+          "name": "punctuation.section.brackets.sorrygle"
+        }
+      ]
+    },
+    "notes": {
+      "patterns": [
+        {
+          "match": "([v^]*)([xcdefgabCDEFGA도레미파솔라시돗렛팟솘랏렢밒솚랖싶])([+\\-]*)",
+          "captures": {
+            "1": { "name": "keyword.operator.octave.sorrygle" },
+            "2": { "name": "support.constant.note.sorrygle" },
+            "3": { "name": "keyword.operator.accidental.sorrygle" }
+          }
+        },
+        { "match": "[_ㅇ]", "name": "constant.language.rest.sorrygle" },
+        { "match": "[~ㅡ]", "name": "string.other.tie.sorrygle" }
+      ]
+    }
+  }
+}
