@@ -1,0 +1,19 @@
+((bpm=100))
+((time-sig=2/4))
+((🔊=(v=100)))
+
+{{octave-chord}}{
+  [vxx]
+}
+
+Turkish March (excerpt) =/
+#1 (♪)(o=5)
+|:{10 c~__dcvbc e~__feDe
+      baGabaGa }
+/1 e~~~(vbaGa) :|
+/2 {=10} {{octave-chord}}(cdefg~~~)
+<+cdefgab^c90> <p(0)c~(1)~~(0)> [>ga]b [[c~~~|efga]]
+
+#2 (🎹)(p=48)(o=3)
+(3ceg) <!c> <.e> <tg> (🔊)[|ceg]~~~
+#~1 gfedc~~~ /= continues channel 1
