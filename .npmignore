@@ -1,0 +1,15 @@
+.context/
+.github/
+.vscode/
+examples/
+node_modules/
+src/
+tests/
+dist/client/
+dist/server/
+*.map
+*.tgz
+.gitignore
+pnpm-lock.yaml
+pnpm-workspace.yaml
+tsconfig.json

@@ -1,75 +1,22 @@
 {
   "name": "sorrygle-lsp",
-  "displayName": "Sorrygle",
-  "description": "Language support for Sorrygle, a text-based MIDI writing language",
+  "description": "Language Server Protocol implementation for Sorrygle",
   "version": "0.1.0",
-  "publisher": "sorrygle-lsp",
   "license": "MIT-0",
   "packageManager": "pnpm@12.11.2",
-  "engines": {
-    "vscode": "^1.82.0"
-  },
-  "categories": [
-    "Programming Languages"
-  ],
-  "main": "./dist/client/extension.js",
-  "contributes": {
-    "languages": [
-      {
-        "id": "sorrygle",
-        "aliases": [
-          "Sorrygle",
-          "sorrygle"
-        ],
-        "extensions": [
-          ".srg",
-          ".sorrygle"
-        ],
-        "configuration": "./language-configuration.json"
-      }
-    ],
-    "grammars": [
-      {
-        "language": "sorrygle",
-        "scopeName": "source.sorrygle",
-        "path": "./syntaxes/sorrygle.tmLanguage.json"
-      }
-    ],
-    "configuration": {
-      "title": "Sorrygle",
-      "properties": {
-        "sorrygle.diagnostics.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Validate Sorrygle documents with the Sorrygle compiler."
-        },
-        "sorrygle.trace.server": {
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between VS Code and the Sorrygle language server."
-        }
-      }
-    }
-  },
+  "main": "./dist/server.js",
   "scripts": {
-    "vscode:prepublish": "pnpm run build",
     "build": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "prepack": "pnpm run build"
   },
   "dependencies": {
     "sorrygle": "^1.3.1-e",
-    "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.12"
   },
   "devDependencies": {
     "@types/node": "^18.19.0",
-    "@types/vscode": "^1.82.0",
     "typescript": "^5.4.0"
   }
 }
